@@ -1,0 +1,73 @@
+/**
+ * Votix Utils Library
+ * --------------------
+ *
+ * This folder contains utility classes and methods used throughout the Votix application.
+ * These utilities promote consistency, reusability, and cleaner business logic across
+ * different parts of the app. The primary categories include:
+ *
+ * 1. Formatters
+ * 2. Validators
+ *
+ * ---------------------------------------------
+ * 📦 Formatters (utils/formatters.dart)
+ * ---------------------------------------------
+ *
+ * Provides custom [TextInputFormatter]s and formatting utilities for common data types.
+ * Use these to handle input formatting inside TextFields and to format display values.
+ *
+ * Included Formatters:
+ * - Phone number formatter with customizable format pattern using '#' placeholders.
+ * - Currency formatter supporting currency symbol, decimal precision, and localization.
+ * - Utility methods for formatting phone numbers and currency strings outside of input.
+ *
+ * Example:
+ * ```dart
+ * VotixFormatters.phoneNumberFormatter(format: '+## (###) ###-####');
+ * VotixFormatters.currencyFormatter(currencySymbol: '₦');
+ * String display = VotixFormatters.formatCurrency(1234.5); // "₦1,234.50"
+ * ```
+ *
+ * ---------------------------------------------
+ * 🛡️ Validators (utils/validators.dart)
+ * ---------------------------------------------
+ *
+ * Provides reusable form validation logic for forms such as login, signup, and payments.
+ *
+ * Included Validators:
+ * - Email validation using RegExp.
+ * - Password strength checks (min length, complexity).
+ * - Phone number validation.
+ * - Generic field presence check (non-empty).
+ *
+ * Example:
+ * ```dart
+ * String? error = VotixValidators.validateEmail('user@votix.com');
+ * if (error != null) {
+ *   print('Invalid: $error');
+ * }
+ * ```
+ *
+ * ---------------------------------------------
+ * 🚀 Usage
+ * ---------------------------------------------
+ *
+ * Import the utilities where needed:
+ * ```dart
+ * import 'package:votix/utils/formatters.dart';
+ * import 'package:votix/utils/validators.dart';
+ * ```
+ *
+ * These utilities are designed to be plug-and-play, with minimal configuration required.
+ * You can also extend or override them based on your app's evolving needs.
+ *
+ * ---------------------------------------------
+ * 📁 File Structure
+ * ---------------------------------------------
+ *
+ * utils/
+ * ├── formatters.dart       # Phone and currency formatters
+ * ├── validators.dart       # Email, password, and phone validation
+ * └── utils.dart            # (Optional) Exports all utils in one place
+ *
+ */

@@ -1,0 +1,691 @@
+/*
+# Votix Components Documentation
+A comprehensive guide to the Votix design system components
+*/
+
+/*
+## Table of Contents
+
+1. VotixButton - Professional, adaptive button component
+2. VotixTextField - Smart, flexible text input component
+3. VotixText - Typography component with consistent styling
+4. VotixSize - Standardized sizing and spacing system
+*/
+
+/******************************************************************************
+    # VOTIX BUTTON
+ *******************************************************************************/
+
+/*
+## Overview
+
+`VotixButton` is a versatile button component that adapts to your app's theme,
+offering multiple variants, sizes, and states. It automatically handles
+light/dark mode switching and provides consistent styling throughout your app.
+*/
+
+/*
+## Features
+
+- Multiple variants: primary, secondary, outline, text, gradient
+- Size options: small, medium, large
+- Loading state with spinner animation
+- Icons: supports leading and trailing icons
+- Adaptive theming: automatically handles light/dark mode
+- Flexible width: wraps content, fixed width, or full width
+- Custom gradients for gradient variant
+*/
+
+/*
+## Usage Examples
+
+```dart
+// Basic primary button
+VotixButton(
+  text: 'Submit',
+  onPressed: handleSubmit,
+)
+
+// Secondary button with icon
+VotixButton(
+  text: 'Add to Cart',
+  onPressed: addToCart,
+  variant: VotixButtonVariant.secondary,
+  leadingIcon: Icons.shopping_cart,
+)
+
+// Outline button
+VotixButton(
+  text: 'Cancel',
+  onPressed: handleCancel,
+  variant: VotixButtonVariant.outline,
+)
+
+// Loading state
+VotixButton(
+  text: 'Loading Example',
+  onPressed: handlePress,
+  isLoading: isLoading, // Set to true to show spinner
+)
+
+// Full width gradient button
+VotixButton(
+  text: 'Create Account',
+  onPressed: createAccount,
+  variant: VotixButtonVariant.gradient,
+  width: double.infinity,
+)
+```
+*/
+
+/*
+## Button Variants
+
+### Primary (Default)
+The standard button with solid background in your primary brand color.
+Best for primary actions like "Submit", "Save", or "Continue".
+
+### Secondary
+Uses mint/secondary colors instead of primary colors.
+Good for secondary actions or to create visual hierarchy.
+
+### Outline
+Transparent background with colored border.
+Useful for less prominent actions or in dense UIs.
+
+### Text
+No background or border, just text and optional icon.
+Ideal for low-emphasis actions or tight spaces.
+
+### Gradient
+Uses beautiful gradients from your app theme.
+Best for main call-to-action buttons or featured actions.
+*/
+
+/*
+## Button Sizes
+
+### Small (36px height)
+For tight spaces or secondary actions.
+
+### Medium (48px height)
+Standard size for most buttons.
+
+### Large (56px height)
+For primary call-to-action buttons.
+*/
+
+/*
+## Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| text | String | required | Text to display on the button |
+| onPressed | VoidCallback? | required | Callback when button is pressed |
+| variant | VotixButtonVariant | primary | Visual style of the button |
+| size | VotixButtonSize | medium | Size of the button |
+| leadingIcon | IconData? | null | Optional icon to show before text |
+| trailingIcon | IconData? | null | Optional icon to show after text |
+| isLoading | bool | false | Whether to show a loading indicator |
+| iconSize | double? | null | Optional icon size override |
+| width | double? | null | Optional width to make button fill available space |
+| customGradient | LinearGradient? | null | Optional custom gradient for gradient variant |
+| borderRadius | double? | null | Optional rounded corners radius |
+| elevation | double? | null | Optional elevation for the button |
+*/
+
+/*
+## Implementation Details
+
+The button component uses your existing color system from `VotixColors` and
+adapts to the current theme automatically. It implements multiple builders for
+different variants to maintain a consistent look and feel while providing
+distinct visual styles.
+
+The architecture follows a modular approach, where base styles are extended
+with variant-specific modifications.
+*/
+
+/******************************************************************************
+    # VOTIX TEXT FIELD
+ *******************************************************************************/
+
+/*
+## Overview
+
+`VotixTextField` is a professionally styled text input component that adapts to
+your app's theme, offering multiple variants, input types, and states. It
+provides built-in validation, formatting, and error handling.
+*/
+
+/*
+## Features
+
+- Multiple variants: outlined, filled, underlined, minimal
+- Smart input types with built-in validation: text, email, password, phone, etc.
+- Automatic light/dark mode adaptation
+- Error states and validation
+- Helper text and hint support
+- Prefix/suffix icons and widgets
+- Character counter
+- Multi-line support
+*/
+
+/*
+## Usage Examples
+
+```dart
+// Basic text field
+VotixTextField(
+  label: 'Username',
+  hint: 'Enter your username',
+)
+
+// Email input with validation
+VotixTextField(
+  label: 'Email',
+  hint: 'Enter your email',
+  inputType: VotixInputType.email,
+  required: true,
+)
+
+// Password input with toggle visibility
+VotixTextField(
+  label: 'Password',
+  hint: 'Enter your password',
+  inputType: VotixInputType.password,
+  required: true,
+)
+
+// Search field
+VotixTextField(
+  hint: 'Search...',
+  inputType: VotixInputType.search,
+  prefixIcon: Icons.search,
+  variant: VotixInputVariant.filled,
+  borderRadius: 24,
+)
+
+// Multi-line input
+VotixTextField(
+  label: 'Message',
+  hint: 'Enter your message',
+  inputType: VotixInputType.multiline,
+  minLines: 3,
+  maxLines: 5,
+)
+```
+*/
+
+/*
+## Input Variants
+
+### Outlined (Default)
+Standard input with a visible border.
+Best for forms and data entry.
+
+### Filled
+Input with a filled background.
+Good for search fields and contexts where you want to visually distinguish inputs.
+
+### Underlined
+Minimalist input with only a bottom line.
+Creates a cleaner look in some UIs.
+
+### Minimal
+Ultra-clean input with no borders, just hint/label.
+For very clean, minimal interfaces.
+*/
+
+/*
+## Input Types
+
+### Text
+Standard text input with no special validation.
+
+### Email
+Email input with email validation and appropriate keyboard.
+
+### Password
+Password input with toggle to show/hide and security features.
+
+### Phone
+Phone number input with formatting and appropriate keyboard.
+
+### Number
+Numeric input that only accepts digits.
+
+### Multiline
+For paragraphs and longer content.
+
+### Search
+Optimized for search functionality.
+
+### URL
+Web address with validation and appropriate keyboard.
+*/
+
+/*
+## Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| controller | TextEditingController? | null | Controller for the text input |
+| label | String? | null | Label text shown above or within the input |
+| hint | String? | null | Hint text shown when the input is empty |
+| helperText | String? | null | Helper text shown below the input |
+| errorText | String? | null | Error text shown below the input |
+| prefixIcon | IconData? | null | Icon to show at the start of the input |
+| suffixIcon | IconData? | null | Icon to show at the end of the input |
+| prefix | Widget? | null | Custom widget to show at the start of the input |
+| suffix | Widget? | null | Custom widget to show at the end of the input |
+| variant | VotixInputVariant | outlined | Visual style of the input |
+| inputType | VotixInputType | text | Type of input with built-in validation |
+| enabled | bool | true | Whether the input is enabled |
+| required | bool | false | Whether the input is required |
+| autofocus | bool | false | Whether the input should have focus when first displayed |
+| onChanged | Function(String)? | null | Callback when text changes |
+| onSubmitted | Function(String)? | null | Callback when form is submitted |
+| validator | String? Function(String?)? | null | Validator function for form validation |
+| focusNode | FocusNode? | null | Focus node for controlling focus |
+| onTap | VoidCallback? | null | Callback when field is tapped |
+| maxLength | int? | null | Maximum number of characters allowed |
+| maxLines | int? | null | Maximum number of lines for multiline input |
+| minLines | int? | null | Minimum number of lines for multiline input |
+| capitalization | TextCapitalization | none | Text capitalization style |
+| inputFormatters | List<TextInputFormatter>? | null | Input formatters for text formatting |
+| textInputAction | TextInputAction? | null | Text input action (e.g., next, done, search) |
+| borderRadius | double? | null | Custom border radius |
+| showCounter | bool | false | Whether to show counter for character count |
+| backgroundColor | Color? | null | Optional custom background color |
+| borderColor | Color? | null | Optional custom border color |
+| textColor | Color? | null | Optional custom text color |
+| contentPadding | EdgeInsetsGeometry? | null | Content padding |
+*/
+
+/*
+## Implementation Details
+
+The TextField component uses your existing theme system and color palette,
+ensuring consistent styling. It automatically configures itself with the right
+keyboard type, validation rules, and special features based on the input type.
+
+For password fields, it provides a visibility toggle icon.
+For required fields, it provides built-in validation.
+*/
+
+/******************************************************************************
+    # VOTIX TEXT
+ *******************************************************************************/
+
+/*
+## Overview
+
+`VotixText` is a versatile typography component that standardizes text styling
+throughout your app. It supports all Material 3 typography styles, multiple
+emphasis levels, and special text treatments like gradients.
+*/
+
+/*
+## Features
+
+- Complete typography system (15 text styles from Material 3)
+- Multiple emphasis levels (high, medium, low, brand, etc.)
+- Text treatments: bold, italic, underline, strikethrough
+- Gradient text support
+- Automatic dark/light mode adaptation
+- Overflow handling: ellipsis, fade, clip, or auto-sizing
+- Selectable text option for copy/paste
+*/
+
+/*
+## Usage Examples
+
+```dart
+// Basic text with default style (bodyMedium)
+VotixText('Hello World')
+
+// Display text with brand color
+VotixText(
+  'Welcome to Votix',
+  style: VotixTextStyle.displayLarge,
+  emphasis: VotixTextEmphasis.brand,
+)
+
+// Body text with multiple lines
+VotixText(
+  'This is a paragraph of text that can span multiple lines.',
+  style: VotixTextStyle.bodyMedium,
+  maxLines: 3,
+)
+
+// Error message
+VotixText.error(
+  'Please check your network connection',
+  isBold: true,
+)
+
+// Gradient text
+VotixText.gradient(
+  'Featured Content',
+  style: VotixTextStyle.headlineMedium,
+)
+
+// Named constructors for common patterns
+VotixText.headline('Section Title')
+VotixText.body('Paragraph text goes here...')
+VotixText.label('Form Label')
+```
+*/
+
+/*
+## Text Styles
+
+### Display (Large, Medium, Small)
+For the largest headings and titles.
+- displayLarge: 57px
+- displayMedium: 45px
+- displaySmall: 36px
+
+### Headline (Large, Medium, Small)
+For section headers.
+- headlineLarge: 32px
+- headlineMedium: 28px
+- headlineSmall: 24px
+
+### Title (Large, Medium, Small)
+For subsection headers and important text.
+- titleLarge: 22px
+- titleMedium: 16px
+- titleSmall: 14px
+
+### Body (Large, Medium, Small)
+For main content text.
+- bodyLarge: 16px
+- bodyMedium: 14px
+- bodySmall: 12px
+
+### Label (Large, Medium, Small)
+For captions, form labels, and auxiliary text.
+- labelLarge: 14px
+- labelMedium: 12px
+- labelSmall: 11px
+*/
+
+/*
+## Emphasis Levels
+
+### High
+Primary text with maximum readability.
+
+### Medium
+Secondary text for supporting information.
+
+### Low
+Tertiary text with minimum visual impact.
+
+### Brand
+Uses your primary brand color (purple).
+
+### Secondary
+Uses your secondary brand color (mint).
+
+### Error
+For error messages.
+
+### Success
+For success messages.
+
+### Inverted
+Automatically inverts based on theme (white on dark, dark on light).
+*/
+
+/*
+## Named Constructors
+
+### VotixText.display()
+For largest headings.
+
+### VotixText.headline()
+For section headers.
+
+### VotixText.title()
+For component titles.
+
+### VotixText.body()
+For main content.
+
+### VotixText.label()
+For form labels and captions.
+
+### VotixText.gradient()
+For gradient-filled text.
+
+### VotixText.error()
+For error messages.
+
+### VotixText.success()
+For success messages.
+*/
+
+/*
+## Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| text | String | required | The text to display |
+| style | VotixTextStyle | bodyMedium | The typography style variant |
+| emphasis | VotixTextEmphasis | high | The emphasis level affecting color |
+| color | Color? | null | Optional custom color (overrides emphasis) |
+| decoration | VotixTextDecoration | none | Text decoration type |
+| isBold | bool | false | Whether to make text bold |
+| isItalic | bool | false | Whether to make text italic |
+| isFilled | bool | false | Whether to use a gradient fill |
+| gradient | Gradient? | null | Custom gradient for gradient decoration |
+| maxLines | int? | null | Maximum number of lines before truncating |
+| overflow | TextOverflow | ellipsis | How to handle overflow |
+| textAlign | TextAlign | start | Text alignment |
+| isSoftened | bool | false | Whether to soften text (reduce opacity) |
+| textScaleFactor | double | 1.0 | Scale factor for the text |
+| letterSpacing | double? | null | Letter spacing adjustment |
+| lineHeight | double? | null | Line height multiplier |
+| autoSize | bool | false | Whether text should automatically adjust its font size |
+| minFontSize | double? | null | Minimum text size for autoSize |
+| selectable | bool | false | Whether to selectable (for copy/paste) |
+| semanticLabel | String? | null | Optional semantic label for accessibility |
+*/
+
+/*
+## Implementation Details
+
+The Text component reads from your existing theme system and color palette to
+ensure consistent typography. It follows a "base + modifiers" pattern, where
+the base style comes from your theme, and various modifiers (emphasis, weight,
+decoration) are applied on top.
+
+For gradient text, it uses a ShaderMask to create the gradient effect while
+maintaining the text's inherent properties.
+*/
+
+/******************************************************************************
+    # VOTIX SIZE
+ *******************************************************************************/
+
+/*
+## Overview
+
+`VotixSize` is a comprehensive sizing system that standardizes dimensions and
+spacing throughout your app. It provides consistent spacing, border radius,
+icon sizes, and responsive design utilities.
+*/
+
+/*
+## Features
+
+- Standardized spacing system based on 4-point grid
+- Border radius standards for consistent rounded corners
+- Icon size standards for consistent iconography
+- Component size standards (buttons, inputs, avatars, etc.)
+- Responsive design utilities and breakpoints
+- Helper extension methods for cleaner code
+*/
+
+/*
+## Usage Examples
+
+```dart
+// Spacing between elements
+VotixSize.m.vertical, // Creates a SizedBox with height
+
+// Padding for containers
+Container(
+  padding: VotixSize.padding,
+  child: Text('Hello'),
+)
+
+// With extension methods
+Text('Hello').withPadding()
+Text('Hello').paddingH() // Horizontal padding only
+
+// Border radius
+Container(
+  decoration: BoxDecoration(
+    borderRadius: VotixSize.borderRadius.rounded,
+  ),
+)
+
+// Responsive sizing
+Text(
+  'Responsive Heading',
+  style: TextStyle(
+    fontSize: VotixSize.responsive(
+      context,
+      mobile: 18,
+      tablet: 24,
+      desktop: 32,
+    ),
+  ),
+)
+
+// Grid system
+GridView.builder(
+  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: VotixSize.getGridColumnCount(context),
+    crossAxisSpacing: VotixSize.r,
+    mainAxisSpacing: VotixSize.r,
+  ),
+)
+```
+*/
+
+/*
+## Spacing System
+
+### Size Constants
+- xs: 4px (Micro spacing for tight areas)
+- s: 8px (Small spacing for related elements)
+- m: 12px (Medium spacing for most elements)
+- r: 16px (Regular spacing for container padding)
+- l: 24px (Large spacing for separation between sections)
+- xl: 32px (Extra large spacing for major section breaks)
+- xxl: 48px (Double extra large spacing for very significant separations)
+- xxxl: 64px (Triple extra large spacing, maximum standard spacing)
+
+### Common Paddings
+- padding: EdgeInsets.all(r) (Standard padding for content containers)
+- paddingH: EdgeInsets.symmetric(horizontal: r) (Horizontal-only padding)
+- paddingV: EdgeInsets.symmetric(vertical: r) (Vertical-only padding)
+- paddingSmall: EdgeInsets.all(s) (Smaller padding for tight containers)
+- paddingLarge: EdgeInsets.all(l) (Larger padding for prominent containers)
+*/
+
+/*
+## Border Radius
+
+- borderRadiusSmall: 4px (For subtle rounding)
+- borderRadiusMedium: 8px (Default radius for most elements)
+- borderRadius: 12px (Standard radius for cards, buttons)
+- borderRadiusLarge: 16px (For more prominent rounding)
+- borderRadiusXL: 24px (Maximum standard radius)
+- borderRadiusCircular: 50px (For circular elements)
+*/
+
+/*
+## Icon Sizes
+
+- iconSizeTiny: 12px (For very small contexts)
+- iconSizeSmall: 16px (For compact UIs)
+- iconSize: 20px (Default size for most icons)
+- iconSizeLarge: 24px (For more prominent icons)
+- iconSizeXL: 32px (For featured icons)
+- iconSizeXXL: 48px (For major focal points)
+*/
+
+/*
+## Breakpoints
+
+- breakpointMobile: 600px
+- breakpointTablet: 905px
+- breakpointDesktop: 1240px
+- breakpointLargeDesktop: 1440px
+*/
+
+/*
+## Helper Methods
+
+### Responsive Sizing
+- responsive() - Returns size based on screen width
+- responsivePadding() - Returns horizontal padding based on screen size
+- percentOfWidth() - Calculates percentage of screen width
+- percentOfHeight() - Calculates percentage of screen height
+
+### Widget Extensions
+- withPadding() - Add padding to a widget
+- withMargin() - Add margin to a widget
+- paddingH() - Add symmetric horizontal padding
+- paddingV() - Add symmetric vertical padding
+- paddingAll() - Add all-sides padding with a custom value
+- constrained() - Constrain the widget with responsive constraints
+- responsiveBox() - Center the widget and apply responsive constraints
+
+### Double Extensions
+- insets - Convert to EdgeInsets with all equal sides
+- insetsH - Convert to horizontal symmetric EdgeInsets
+- insetsV - Convert to vertical symmetric EdgeInsets
+- rounded - Convert to BorderRadius with all equal corners
+- box - Create a SizedBox with equal width and height
+- horizontal - Create a SizedBox with this width and zero height
+- vertical - Create a SizedBox with this height and zero width
+*/
+
+/*
+## Implementation Details
+
+The sizing system is implemented as a utility class with static constants and
+methods. It uses extension methods to provide a cleaner API for common
+operations. All values are based on a 4-point grid system to ensure consistent
+visual rhythm throughout the app.
+
+The responsive utilities automatically detect the device size and adjust
+values accordingly, ensuring your UI looks great on all screen sizes.
+*/
+
+/*
+# Integration Guide
+
+These components work together as a cohesive design system:
+
+1. VotixSize provides the foundation with consistent spacing and dimensions
+2. VotixText builds on top of this with standardized typography
+3. VotixTextField and VotixButton use both sizing and typography standards
+
+All components automatically adapt to light and dark themes by leveraging your
+existing VotixColors and VotixTheme classes.
+
+## Best Practices
+
+- Use VotixSize constants for all dimensions to maintain consistency
+- Leverage VotixText for all text to ensure typographic harmony
+- Use extension methods for cleaner, more readable code
+- Let components automatically adapt to the current theme
+*/
