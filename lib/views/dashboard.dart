@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:votix/component/votix_appbar.dart';
-import 'package:votix/component/votix_text.dart';
 import 'package:votix/component/buttons.dart';
+import 'package:votix/component/votix_text.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -9,26 +8,17 @@ class Dashboard extends StatefulWidget {
   @override
   State<Dashboard> createState() => _DashboardState();
 }
+
 class _DashboardState extends State<Dashboard> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: VotixAppBar(
-        title: 'Dashboard',
-        logo: Image.asset(
-          'assets/logo/votix.png',
-          height: 28,
-        ),
-        height: 70,
-        automaticallyImplyLeading: false,
-
-
-
-
-
-      ),
+      // appBar: VotixAppBar(
+      //   title: 'Dashboard',
+      //   logo: Image.asset('assets/logo/votix.png', height: 28),
+      //   height: 70,
+      //   automaticallyImplyLeading: false,
+      // ),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Center(
@@ -39,8 +29,7 @@ class _DashboardState extends State<Dashboard> {
               const SizedBox(height: 8),
               VotixText.body('Need to login'),
               const SizedBox(height: 32),
-            VotixButton(
-
+              VotixButton(
                 text: 'login',
                 leadingIcon: Icons.login,
                 variant: VotixButtonVariant.primary,
@@ -48,15 +37,12 @@ class _DashboardState extends State<Dashboard> {
                 size: VotixButtonSize.large,
                 onPressed: () {
                   Navigator.pushNamed(context, "/login");
-                }
-
-            ),
-          ],
-
+                },
+              ),
+            ],
+          ),
         ),
       ),
-    ),
     );
   }
 }
-
